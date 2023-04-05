@@ -16,32 +16,34 @@ settings:
 
 # The format that will be used to display player messages.
 #
-# You can use variables from placeholderapi using % %
-# For more information visit: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
+# You can use variables from placeholderapi (https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders)
 #
-# You can also use internal plugin placeholders, for example:
-# {display_name}
-# {name}
-# {message}
+# You can also use internal plugin placeholders, for example: {display_name}, {name} and {message}
 #
-# Also you can display player profile in chat using <profile>text</profile>
-# and when the cursor passes over the selected text, the profile will be displayed
-# in the format you configure.
+# Also you can display player profile in chat using <profile>text</profile> and when
+# the cursor passes over the selected text, the profile will be displayed in the format you configure.
 #
 # Leave empty to disable chat formatting.
 format: "%vault_prefix% <profile>{display_name}</profile>&8: &7{message}"
 
+grammar:
+  # Add a period (.) at the end of the messages if it does not end with one.
+  append-pediod: true
+  # Replaces the first character of the message with the same uppercase character.
+  capitalize: true
+  # Remove capital letters from messages.
+  remove-caps: true
+
 # Player profile.
 profile:
   # You can execute or suggest a command to the player who clicks the name of another player in the chat.
-  # Possible action types:
   # COPY_TO_CLIPBOARD     Copies a text to the user's clipboard
   # OPEN_URL              Open a link with the user's browser (The user must confirm whether or not to open the link)
   # RUN_COMMAND           Run a command as the player (you can also run commands in a proxy)
   # SUGGEST_COMMAND       Suggest a command (type it in the chat but without sending)
   click:
     type: "SUGGEST_COMMAND"
-    action: "/msg {clicked_player}"
+    action: "/msg {clicked_player} "
   # This message is intended to appear when the cursor hovers over a player's name in chat.
   # This can be retrieved from any other plugin (and translated into the player's language)
   # using the PlaceholderAPI variable: %advancedchat_profile%

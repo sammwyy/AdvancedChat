@@ -1,5 +1,6 @@
 package com.sammwy.advancedchat.listeners;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -8,6 +9,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.sammwy.advancedchat.AdvancedChat;
 import com.sammwy.advancedchat.players.ChatPlayer;
+import com.sammwy.libchat.chat.ChatColor;
 import com.sammwy.libchat.chat.Component;
 import com.sammwy.libchat.chat.TextComponent;
 import com.sammwy.libchat.events.ClickEvent;
@@ -47,6 +49,7 @@ public class AsyncPlayerChatListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         ChatPlayer player = this.plugin.getPlayerManager().getPlayer(e.getPlayer());
+        String message = e.getMessage();
 
         // Restrinction.
         if (this.plugin.getConfig().getBoolean("restrinction.enabled")) {
@@ -59,14 +62,35 @@ public class AsyncPlayerChatListener implements Listener {
             }
         }
 
+        // Colorize.
+        if (player.hasPermission("chat.color")) {
+            boolean specials = player.hasPermission("chat.color.special");
+            message = ChatColor.translateAlternateColorCodes('&', message, specials);
+        }
+
+        // Grammar.
+        if (plugin.getConfig().getBoolean("grammar.append-pediod")) {
+            if (message.endsWith(".")) {
+                message = message + ".";
+            }
+        }
+
+        if (plugin.getConfig().getBoolean("grammar.remove-caps")) {
+            message = message.toLowerCase();
+        }
+
+        if (plugin.getConfig().getBoolean("grammar.capitalize")) {
+            message = StringUtils.capitalize(message);
+        }
+
         // Formatting.
         String format = this.plugin.getConfig().getString("format");
         if (format != null && !format.isEmpty()) {
-            String message = player.formatMessage(format).replace("{message}", e.getMessage());
+            String finalMessage = player.formatMessage(format).replace("{message}", e.getMessage());
 
             for (Player chatRecipent : e.getRecipients()) {
                 ChatPlayer recipent = this.plugin.getPlayerManager().getPlayer(chatRecipent);
-                Component component = this.messageToComponent(player, recipent, message);
+                Component component = this.messageToComponent(player, recipent, finalMessage);
                 recipent.sendMessage(component);
             }
 
