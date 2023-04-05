@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.sammwy.advancedchat.AdvancedChat;
+import com.sammwy.advancedchat.config.Configuration;
 import com.sammwy.advancedchat.players.ChatPlayer;
 import com.sammwy.libchat.chat.ChatColor;
 import com.sammwy.libchat.chat.Component;
@@ -48,17 +49,42 @@ public class AsyncPlayerChatListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerChat(AsyncPlayerChatEvent e) {
+        Configuration config = this.plugin.getConfig();
         ChatPlayer player = this.plugin.getPlayerManager().getPlayer(e.getPlayer());
         String message = e.getMessage();
 
         // Restrinction.
-        if (this.plugin.getConfig().getBoolean("restrinction.enabled")) {
-            String permission = this.plugin.getConfig().getString("restrinction.permission");
+        if (config.getBoolean("restrinction.enabled")) {
+            String permission = config.getString("restrinction.bypass");
 
             if (!player.hasPermission(permission)) {
-                player.sendI18nMessage("restricted");
+                player.sendI18nMessage("restrincion.message");
                 e.setCancelled(true);
                 return;
+            }
+        }
+
+        // Cooldown.
+        long last = player.getState().lastMessageTimestamp;
+        long current = System.currentTimeMillis();
+        long cooldown = config.getLong("cooldown.time");
+
+        if ((current - last) < cooldown && !player.hasPermission(config.getString("cooldown.bypass"))) {
+            player.sendI18nMessage("cooldown.message");
+            e.setCancelled(true);
+            return;
+        } else {
+            player.getState().lastMessageTimestamp = current;
+        }
+
+        // Automod: Message repeat.
+        if (config.getBoolean("automod.block-repeated-messages")) {
+            if (!player.hasPermission(config.getString("automod.block-repeated-messages.bypass"))) {
+                if (player.getState().lastMessage.equalsIgnoreCase(message)) {
+                    player.sendI18nMessage("automod.repeated-message");
+                    e.setCancelled(true);
+                    return;
+                }
             }
         }
 
@@ -69,22 +95,22 @@ public class AsyncPlayerChatListener implements Listener {
         }
 
         // Grammar.
-        if (plugin.getConfig().getBoolean("grammar.append-pediod")) {
+        if (config.getBoolean("grammar.append-pediod")) {
             if (message.endsWith(".")) {
                 message = message + ".";
             }
         }
 
-        if (plugin.getConfig().getBoolean("grammar.remove-caps")) {
+        if (config.getBoolean("grammar.remove-caps")) {
             message = message.toLowerCase();
         }
 
-        if (plugin.getConfig().getBoolean("grammar.capitalize")) {
+        if (config.getBoolean("grammar.capitalize")) {
             message = StringUtils.capitalize(message);
         }
 
         // Formatting.
-        String format = this.plugin.getConfig().getString("format");
+        String format = config.getString("format");
         if (format != null && !format.isEmpty()) {
             String finalMessage = player.formatMessage(format).replace("{message}", e.getMessage());
 

@@ -1,9 +1,5 @@
 package com.sammwy.advancedchat.players;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import com.sammwy.advancedchat.AdvancedChat;
@@ -16,14 +12,17 @@ import me.clip.placeholderapi.PlaceholderAPI;
 
 public class ChatPlayer extends CommandExecutor {
     private Player bukkitPlayer;
+    private ChatPlayerState state;
 
     public ChatPlayer(AdvancedChat plugin, Player bukkitPlayer) {
         super(plugin, bukkitPlayer);
         this.bukkitPlayer = bukkitPlayer;
+        this.state = new ChatPlayerState();
     }
 
-    public Player getBukkitPlayer() {
-        return this.bukkitPlayer;
+    public void download() {
+        // Descargar datos del jugador de la DB.
+        // Este metodo es llamado cuando el jugador se une al servidor.
     }
 
     @Override
@@ -39,6 +38,10 @@ public class ChatPlayer extends CommandExecutor {
                 .replace("{name}", this.getName());
     }
 
+    public Player getBukkitPlayer() {
+        return this.bukkitPlayer;
+    }
+
     @Override
     public Language getLang() {
         return this.getPlugin().getLanguageManager().getLanguage(this.bukkitPlayer);
@@ -52,13 +55,12 @@ public class ChatPlayer extends CommandExecutor {
         return this.getName().toLowerCase();
     }
 
-    public boolean isOnline() {
-        return this.bukkitPlayer != null && this.bukkitPlayer.isOnline();
+    public ChatPlayerState getState() {
+        return this.state;
     }
 
-    public void download() {
-        // Descargar datos del jugador de la DB.
-        // Este metodo es llamado cuando el jugador se une al servidor.
+    public boolean isOnline() {
+        return this.bukkitPlayer != null && this.bukkitPlayer.isOnline();
     }
 
     public void sendRawMessage(String json) {
@@ -72,19 +74,4 @@ public class ChatPlayer extends CommandExecutor {
     public void sendMessage(Component component) {
         LibChatBukkit.sendMessage(bukkitPlayer, component);
     }
-
-    public void sendToServer(String server) {
-        try {
-            ByteArrayOutputStream b = new ByteArrayOutputStream();
-            DataOutputStream out = new DataOutputStream(b);
-            out.writeUTF("Connect");
-            out.writeUTF(server);
-            this.getBukkitPlayer().sendPluginMessage(this.getPlugin(), "BungeeCord", b.toByteArray());
-            b.close();
-            out.close();
-        } catch (Exception e) {
-            this.getBukkitPlayer().sendMessage(ChatColor.RED + "Error when trying to connect to " + server);
-        }
-    }
-
 }

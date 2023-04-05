@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.sammwy.advancedchat.api.ChatAPI;
 import com.sammwy.advancedchat.api.events.ChatEvent;
 import com.sammwy.advancedchat.commands.CommandListener;
-import com.sammwy.advancedchat.commands.impl.HelloCommand;
+import com.sammwy.advancedchat.commands.impl.ChatCommand;
 import com.sammwy.advancedchat.config.ConfigManager;
 import com.sammwy.advancedchat.config.Configuration;
 import com.sammwy.advancedchat.listeners.AsyncPlayerChatListener;
@@ -58,7 +58,7 @@ public class AdvancedChat extends JavaPlugin {
         this.addListener(new PlayerQuitListener(this));
 
         // Register commands.
-        this.addCommand(new HelloCommand());
+        this.addCommand(new ChatCommand());
     }
 
     // Configuration getters

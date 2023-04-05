@@ -8,10 +8,7 @@ import org.bukkit.command.CommandSender;
 
 import com.sammwy.advancedchat.AdvancedChat;
 import com.sammwy.advancedchat.errors.BadArgumentException;
-import com.sammwy.advancedchat.errors.MaterialNotFoundException;
 import com.sammwy.advancedchat.errors.PlayerOfflineException;
-import com.sammwy.advancedchat.errors.SoundNotFoundException;
-import com.sammwy.advancedchat.errors.WorldNotFoundException;
 import com.sammwy.advancedchat.utils.ArrayUtils;
 
 public abstract class CommandListener implements CommandExecutor {
@@ -60,24 +57,6 @@ public abstract class CommandListener implements CommandExecutor {
         ctx.getExecutor().sendMessage(
                 ctx.getExecutor().getI18nMessage("common.arg-must-be-" + type)
                         .replace("{arg}", value));
-    }
-
-    protected void onWorldNotFound(CommandContext ctx, String worldName) {
-        ctx.getExecutor().sendMessage(
-                ctx.getExecutor().getI18nMessage("common.world-not-found")
-                        .replace("{world}", worldName));
-    }
-
-    protected void onMaterialNotFound(CommandContext ctx, String materialName) {
-        ctx.getExecutor().sendMessage(
-                ctx.getExecutor().getI18nMessage("common.material-not-found")
-                        .replace("{material}", materialName));
-    }
-
-    protected void onSoundNotFound(CommandContext ctx, String soundName) {
-        ctx.getExecutor().sendMessage(
-                ctx.getExecutor().getI18nMessage("common.sound-not-found")
-                        .replace("{sound}", soundName));
     }
 
     protected void onException(CommandContext ctx, Exception e) {
@@ -152,12 +131,6 @@ public abstract class CommandListener implements CommandExecutor {
             this.onPlayerOffline(ctx, e.getUsername());
         } catch (BadArgumentException e) {
             this.onBadArgument(ctx, e.getArg(), e.getWaiting());
-        } catch (WorldNotFoundException e) {
-            this.onWorldNotFound(ctx, e.getWorldName());
-        } catch (MaterialNotFoundException e) {
-            this.onMaterialNotFound(ctx, e.getMaterialName());
-        } catch (SoundNotFoundException e) {
-            this.onSoundNotFound(ctx, e.getSoundName());
         } catch (Exception e) {
             this.onException(ctx, e);
         }

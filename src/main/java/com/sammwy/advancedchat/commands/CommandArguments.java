@@ -11,13 +11,9 @@ import org.bukkit.entity.Player;
 
 import com.sammwy.advancedchat.AdvancedChat;
 import com.sammwy.advancedchat.errors.BadArgumentException;
-import com.sammwy.advancedchat.errors.MaterialNotFoundException;
 import com.sammwy.advancedchat.errors.PlayerOfflineException;
-import com.sammwy.advancedchat.errors.SoundNotFoundException;
-import com.sammwy.advancedchat.errors.WorldNotFoundException;
 import com.sammwy.advancedchat.players.ChatPlayer;
 import com.sammwy.advancedchat.players.OfflinePlayer;
-import com.sammwy.advancedchat.utils.BukkitUtils;
 
 public class CommandArguments {
     private AdvancedChat plugin;
@@ -77,8 +73,7 @@ public class CommandArguments {
         return (World) this.arguments.get(index);
     }
 
-    public void parse(String[] args) throws BadArgumentException, PlayerOfflineException, WorldNotFoundException,
-            MaterialNotFoundException, SoundNotFoundException {
+    public void parse(String[] args) throws BadArgumentException, PlayerOfflineException {
         int i = 0;
 
         for (String arg : args) {
@@ -133,29 +128,6 @@ public class CommandArguments {
                     } else {
                         throw new PlayerOfflineException(arg);
                     }
-                }
-            }
-
-            else if (type == Argument.WORLD) {
-                World world = Bukkit.getServer().getWorld(arg);
-                if (world != null) {
-                    value = world;
-                } else {
-                    throw new WorldNotFoundException(arg);
-                }
-            }
-
-            else if (type == Argument.MATERIAL) {
-                value = BukkitUtils.getMaterial(arg);
-                if (value == null) {
-                    throw new MaterialNotFoundException(arg);
-                }
-            }
-
-            else if (type == Argument.SOUND) {
-                value = BukkitUtils.getSound(arg);
-                if (value == null) {
-                    throw new SoundNotFoundException(arg);
                 }
             }
 

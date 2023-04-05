@@ -7,5 +7,5 @@ url: ${url}
 softdepend: ["PlaceholderAPI"]
 api-version: 1.13
 commands:
-  hello:
-    description: "Main test command"
+  chat:
+    description: "Main chat command"

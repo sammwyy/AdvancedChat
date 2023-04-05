@@ -5,10 +5,7 @@ import org.bukkit.entity.Player;
 
 import com.sammwy.advancedchat.AdvancedChat;
 import com.sammwy.advancedchat.errors.BadArgumentException;
-import com.sammwy.advancedchat.errors.MaterialNotFoundException;
 import com.sammwy.advancedchat.errors.PlayerOfflineException;
-import com.sammwy.advancedchat.errors.SoundNotFoundException;
-import com.sammwy.advancedchat.errors.WorldNotFoundException;
 import com.sammwy.advancedchat.players.ChatPlayer;
 
 public class CommandContext {
@@ -27,8 +24,7 @@ public class CommandContext {
         this.arguments = new CommandArguments(plugin, requiredArguments);
     }
 
-    public void parseArguments(String[] args) throws BadArgumentException, PlayerOfflineException,
-            WorldNotFoundException, MaterialNotFoundException, SoundNotFoundException {
+    public void parseArguments(String[] args) throws BadArgumentException, PlayerOfflineException {
         this.arguments.parse(args);
     }
 

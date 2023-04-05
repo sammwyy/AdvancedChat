@@ -1,23 +1,41 @@
 # Mensajes comunes
 common:
-  no-by-console: "&cThis command cannot be executed in the console."
-  no-by-player: "&cThis command cannot be executed by a player."
-  no-permission: "&cYou dont have permissions to run this command."
-  offline-player: "&cThis player is offline."
-  material-not-found: "&cMaterial {material} not found."
-  sound-not-found: "&cSound {sound} not found."
-  world-not-found: "&cWorld {world} not found."
-  arg-must-be-boolean: "&cThe argument {arg} must be true or false."
-  arg-must-be-number: "&c{arg} is not valid number."
-  exception: "&cAn unknown error has ocurred, contact an administrator."
+  no-by-player: "&cEste comando solo puede ser ejecutado por un jugador."
+  no-permission: "&cNo tienes permisos para usar este comando."
+  offline-player: "&cEste jugador se encuentra desconectado."
+  arg-must-be-boolean: "&c{arg} no es un valor true/false valido."
+  arg-must-be-number: "&c{arg} no es un número válido."
+  exception: "&cHa ocurrido un error desconocido, contacta a un administrador."
+
+# Mensajes de auto moderación.
+automod:
+  repeated-message: "&cNo repitas el mismo mensaje."
+
+# Mensajes de comandos
+clear:
+  cleared-by-admin: "&bEl chat fue limpiado por un administrador."
+  success: "&aHas limpiado el chat."
+
+cooldown:
+  # Mensaje a mostrar si el chat tiene cooldown activado.
+  warning: "&cPor favor, no envies mensajes muy rápido."
+
+help: |-
+  &r
+  &9&lAdvanced&b&lChat &8| &cv{plugin_version} por Sammwy
+  &r
+  &f/chat clear &8- &eLimpia el chat para todos los jugadores no admin.
+  &f/chat clear all &8- &eLimpia el chat para todos los jugadores.
+
+restriction:
+  # Mensaje a mostrar si el chat esta desactivado
+  warning: "&cEl chat se encuentra desactivado."
 
 # Formato del perfil
 profile: |-
   &2⚔ Asesinatos: &a%player_kills%
   &4☠ Muertes: &c%player_deaths%
+  &5⌚ Tiempo jugado: &d%statistic_time_played%
   &r
-  &9⌛ Latencia: &b%player_ping%
+  &9☁ Latencia: &b%player_ping%
   &6⛃ Dinero: &e%vault_eco_balance%
-
-# Mensaje a mostrar si el chat esta desactivado
-restricted: "&cEl chat se encuentra desactivado."

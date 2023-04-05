@@ -1,23 +1,41 @@
 # Common messages
 common:
-  no-by-console: "&cThis command cannot be executed in the console."
   no-by-player: "&cThis command cannot be executed by a player."
   no-permission: "&cYou dont have permissions to run this command."
   offline-player: "&cThis player is offline."
-  material-not-found: "&cMaterial {material} not found."
-  sound-not-found: "&cSound {sound} not found."
-  world-not-found: "&cWorld {world} not found."
   arg-must-be-boolean: "&cThe argument {arg} must be true or false."
   arg-must-be-number: "&c{arg} is not valid number."
   exception: "&cAn unknown error has ocurred, contact an administrator."
+
+# Autmod messages
+automod:
+  repeated-message: "&cDon't repeat the same message."
+
+# Command messages
+clear:
+  cleared-by-admin: "&bThe chat was cleaned by an administrator."
+  success: "&aYou have cleaned the chat."
+
+cooldown:
+  # Message if player triggers cooldown
+  message: "&cPlease don't send messages so fast."
+
+help: |-
+  &r
+  &9&lAdvanced&b&lChat &8| &cv{plugin_version} by Sammwy
+  &r
+  &f/chat clear &8- &eClear chat for non-admin players.
+  &f/chat clear all &8- &eClear chat for all players.
+
+restriction:
+  # Message to show if chat is restricted
+  message: "&cChat is disabled."
 
 # Profile format
 profile: |-
   &2⚔ Kills: &a%statistic_player_kills%
   &4☠ Deaths: &c%statistic_deaths%
+  &5⌚ Time played: &d%statistic_time_played%
   &r
-  &9⌛ Ping: &b%player_ping%
+  &9☁ Ping: &b%player_ping%
   &6⛃ Balance: &e%vault_eco_balance%
-
-# Message to show if chat is restricted
-restricted: "&cChat is disabled."

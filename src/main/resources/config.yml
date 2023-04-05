@@ -14,6 +14,26 @@ settings:
   # It is also the one that will be used in the console.
   default-lang: "en"
 
+# Automatic moderation based on chat.
+automod:
+  block-repeated-messages:
+    enabled: true
+    bypass: "chat.bypass.repeated-messages"
+
+# The lines that will be cleaned in the chat when using the /chat clear command.
+clear:
+  lines: 20
+  # Players with this permission will not have their chat cleared unless they use /chat clear all.
+  bypass: "chat.bypass.clear"
+
+# Enables a cooldown between messages from the same player.
+cooldown:
+  enabled: true
+  # The time in milliseconds that the player must wait before being able to send another message.
+  time: 1000
+  # Permission to bypass the cooldown.
+  bypass: "chat.bypass.cooldown"
+
 # The format that will be used to display player messages.
 #
 # You can use variables from placeholderapi (https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders)
@@ -48,14 +68,14 @@ profile:
   # This can be retrieved from any other plugin (and translated into the player's language)
   # using the PlaceholderAPI variable: %advancedchat_profile%
   hover: |-
-    &8===================================
+    "%vault_prefix% %player_name%
+    &8%player_uuid%
     &r
     {i18n:profile}
     &r
-    &8===================================
 
 # You can deactivate the chat whenever you like and nobody will be able to send messages.
-# You can also configure a permission that will work as a bypass.
 restrinction:
   enabled: false
-  permission: "chat.bypass.restrinction"
+  # You can also configure a permission that will work as a bypass.
+  bypass: "chat.bypass.restrinction"
