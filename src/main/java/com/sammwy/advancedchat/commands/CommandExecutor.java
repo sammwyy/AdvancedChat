@@ -21,6 +21,15 @@ public class CommandExecutor {
                 .replace("{plugin_version}", this.plugin.getDescription().getVersion());
     }
 
+    public String formatTranslationKeys(String message) {
+        while (message.contains("{i18n:")) {
+            String key = message.split("\\{i18n:")[1].split("\\}")[0];
+            String placeholder = "{i18n:" + key + "}";
+            message = message.replace(placeholder, this.getI18nMessage(key));
+        }
+        return message;
+    }
+
     public Language getLang() {
         return this.plugin.getLanguageManager().getDefaultLanguage();
     }

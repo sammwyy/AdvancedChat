@@ -34,7 +34,9 @@ public class ChatPlayer extends CommandExecutor {
             output = PlaceholderAPI.setPlaceholders(this.getBukkitPlayer(), output);
         }
 
-        return output;
+        return output
+                .replace("{display_name}", this.bukkitPlayer.getDisplayName())
+                .replace("{name}", this.getName());
     }
 
     @Override

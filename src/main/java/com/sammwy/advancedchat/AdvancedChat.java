@@ -10,6 +10,7 @@ import com.sammwy.advancedchat.commands.CommandListener;
 import com.sammwy.advancedchat.commands.impl.HelloCommand;
 import com.sammwy.advancedchat.config.ConfigManager;
 import com.sammwy.advancedchat.config.Configuration;
+import com.sammwy.advancedchat.listeners.AsyncPlayerChatListener;
 import com.sammwy.advancedchat.listeners.PlayerJoinListener;
 import com.sammwy.advancedchat.listeners.PlayerQuitListener;
 import com.sammwy.advancedchat.players.ChatPlayerManager;
@@ -52,6 +53,7 @@ public class AdvancedChat extends JavaPlugin {
         this.playerManager.addAll();
 
         // Register listeners.
+        this.addListener(new AsyncPlayerChatListener(this));
         this.addListener(new PlayerJoinListener(this));
         this.addListener(new PlayerQuitListener(this));
 

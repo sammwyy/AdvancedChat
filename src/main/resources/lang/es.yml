@@ -1,4 +1,4 @@
-# Common messages
+# Mensajes comunes
 common:
   no-by-console: "&cThis command cannot be executed in the console."
   no-by-player: "&cThis command cannot be executed by a player."
@@ -11,13 +11,13 @@ common:
   arg-must-be-number: "&c{arg} is not valid number."
   exception: "&cAn unknown error has ocurred, contact an administrator."
 
-# Profile format
+# Formato del perfil
 profile: |-
-  &2⚔ Kills: &a%statistic_player_kills%
-  &4☠ Deaths: &c%statistic_deaths%
+  &2⚔ Asesinatos: &a%player_kills%
+  &4☠ Muertes: &c%player_deaths%
   &r
-  &9⌛ Ping: &b%player_ping%
-  &6⛃ Balance: &e%vault_eco_balance%
+  &9⌛ Latencia: &b%player_ping%
+  &6⛃ Dinero: &e%vault_eco_balance%
 
-# Message to show if chat is restricted
-restricted: "&cChat is disabled."
+# Mensaje a mostrar si el chat esta desactivado
+restricted: "&cEl chat se encuentra desactivado."
