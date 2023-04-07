@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sammwy.advancedchat.api.ChatAPI;
 import com.sammwy.advancedchat.api.events.ChatEvent;
+import com.sammwy.advancedchat.commands.CommandExecutor;
 import com.sammwy.advancedchat.commands.CommandListener;
 import com.sammwy.advancedchat.commands.impl.ChatCommand;
 import com.sammwy.advancedchat.config.ConfigManager;
@@ -20,6 +21,8 @@ public class AdvancedChat extends JavaPlugin {
     private ConfigManager configManager;
     private LanguageManager languageManager;
     private ChatPlayerManager playerManager;
+
+    private CommandExecutor console;
 
     private void addCommand(CommandListener command) {
         command.register(this, false);
@@ -59,6 +62,9 @@ public class AdvancedChat extends JavaPlugin {
 
         // Register commands.
         this.addCommand(new ChatCommand());
+
+        // Get console.
+        this.console = new CommandExecutor(this, this.getServer().getConsoleSender());
     }
 
     // Configuration getters
@@ -76,6 +82,10 @@ public class AdvancedChat extends JavaPlugin {
     }
 
     // Others getters
+    public CommandExecutor getConsole() {
+        return this.console;
+    }
+
     public boolean hasPlugin(String pluginName) {
         Plugin plugin = this.getServer().getPluginManager().getPlugin(pluginName);
         return plugin != null && plugin.isEnabled();

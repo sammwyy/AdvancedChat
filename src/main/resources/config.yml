@@ -1,4 +1,4 @@
-                            #
+#
 #    ,---.     ,--.                                         ,--. ,-----.,--.               ,--.
 #   /  O  \  ,-|  |,--.  ,--.,--,--.,--,--,  ,---. ,---.  ,-|  |'  .--./|  ,---.  ,--,--.,-'  '-.
 #  |  .-.  |' .-. | \  `'  /' ,-.  ||      \| .--'| .-. :' .-. ||  |    |  .-.  |' ,-.  |'-.  .-'
@@ -19,6 +19,12 @@ automod:
   block-repeated-messages:
     enabled: true
     bypass: "chat.bypass.repeated-messages"
+  block-links:
+    enabled: true
+    bypass: "chat.bypass.links"
+    whitelist:
+      - https://github.com/sammwyy/AdvancedChat
+      - https://google.com
 
 # The lines that will be cleaned in the chat when using the /chat clear command.
 clear:
@@ -44,7 +50,9 @@ cooldown:
 # the cursor passes over the selected text, the profile will be displayed in the format you configure.
 #
 # Leave empty to disable chat formatting.
-format: "%vault_prefix% <profile>{display_name}</profile>&8: &7{message}"
+format: "%vault_prefix%<profile>{display_name}</profile>&8: &7{message}"
+# The format of the messages but in the console (Leaving it empty will disable logging)
+format-console: "%vault_prefix%{display_name}&8: &7{message}"
 
 grammar:
   # Add a period (.) at the end of the messages if it does not end with one.
@@ -68,7 +76,7 @@ profile:
   # This can be retrieved from any other plugin (and translated into the player's language)
   # using the PlaceholderAPI variable: %advancedchat_profile%
   hover: |-
-    "%vault_prefix% %player_name%
+    %vault_prefix%%player_name%
     &8%player_uuid%
     &r
     {i18n:profile}

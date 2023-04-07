@@ -10,6 +10,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import com.sammwy.advancedchat.AdvancedChat;
 import com.sammwy.advancedchat.config.Configuration;
 import com.sammwy.advancedchat.players.ChatPlayer;
+import com.sammwy.advancedchat.utils.RegexUtils;
 import com.sammwy.libchat.chat.ChatColor;
 import com.sammwy.libchat.chat.Component;
 import com.sammwy.libchat.chat.TextComponent;
@@ -78,10 +79,23 @@ public class AsyncPlayerChatListener implements Listener {
         }
 
         // Automod: Message repeat.
-        if (config.getBoolean("automod.block-repeated-messages")) {
+        if (config.getBoolean("automod.block-repeated-messages.enabled")) {
             if (!player.hasPermission(config.getString("automod.block-repeated-messages.bypass"))) {
                 if (player.getState().lastMessage.equalsIgnoreCase(message)) {
                     player.sendI18nMessage("automod.repeated-message");
+                    e.setCancelled(true);
+                    return;
+                } else {
+                    player.getState().lastMessage = message;
+                }
+            }
+        }
+
+        // Automod: Links.
+        if (config.getBoolean("automod.block-links.enabled")) {
+            if (!player.hasPermission(config.getString("automod.block-links.bypass"))) {
+                if (RegexUtils.matchURL(message, config.getStringList("automod.block-links.whitelist"))) {
+                    player.sendI18nMessage("automod.links");
                     e.setCancelled(true);
                     return;
                 }
@@ -112,7 +126,7 @@ public class AsyncPlayerChatListener implements Listener {
         // Formatting.
         String format = config.getString("format");
         if (format != null && !format.isEmpty()) {
-            String finalMessage = player.formatMessage(format).replace("{message}", e.getMessage());
+            String finalMessage = player.formatMessage(format).replace("{message}", message);
 
             for (Player chatRecipent : e.getRecipients()) {
                 ChatPlayer recipent = this.plugin.getPlayerManager().getPlayer(chatRecipent);
@@ -121,6 +135,13 @@ public class AsyncPlayerChatListener implements Listener {
             }
 
             e.setCancelled(true);
+        }
+
+        // Console logging.
+        String consoleFormat = config.getString("format-console");
+        if (consoleFormat != null && !consoleFormat.isEmpty()) {
+            String finalMessage = player.formatMessage(consoleFormat).replace("{message}", message);
+            this.plugin.getConsole().sendMessage(finalMessage);
         }
     }
 }

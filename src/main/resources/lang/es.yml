@@ -9,6 +9,7 @@ common:
 
 # Mensajes de auto moderación.
 automod:
+  links: "No está permitido escribir enlaces en el chat."
   repeated-message: "&cNo repitas el mismo mensaje."
 
 # Mensajes de comandos
