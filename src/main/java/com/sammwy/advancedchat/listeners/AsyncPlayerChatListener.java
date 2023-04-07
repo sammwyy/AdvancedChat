@@ -10,7 +10,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import com.sammwy.advancedchat.AdvancedChat;
 import com.sammwy.advancedchat.config.Configuration;
 import com.sammwy.advancedchat.players.ChatPlayer;
-import com.sammwy.advancedchat.utils.RegexUtils;
 import com.sammwy.libchat.chat.ChatColor;
 import com.sammwy.libchat.chat.Component;
 import com.sammwy.libchat.chat.TextComponent;
@@ -65,41 +64,10 @@ public class AsyncPlayerChatListener implements Listener {
             }
         }
 
-        // Cooldown.
-        long last = player.getState().lastMessageTimestamp;
-        long current = System.currentTimeMillis();
-        long cooldown = config.getLong("cooldown.time");
-
-        if ((current - last) < cooldown && !player.hasPermission(config.getString("cooldown.bypass"))) {
-            player.sendI18nMessage("cooldown.message");
+        // Automod.
+        if (!this.plugin.getAutomod().check(player, message)) {
             e.setCancelled(true);
             return;
-        } else {
-            player.getState().lastMessageTimestamp = current;
-        }
-
-        // Automod: Message repeat.
-        if (config.getBoolean("automod.block-repeated-messages.enabled")) {
-            if (!player.hasPermission(config.getString("automod.block-repeated-messages.bypass"))) {
-                if (player.getState().lastMessage.equalsIgnoreCase(message)) {
-                    player.sendI18nMessage("automod.repeated-message");
-                    e.setCancelled(true);
-                    return;
-                } else {
-                    player.getState().lastMessage = message;
-                }
-            }
-        }
-
-        // Automod: Links.
-        if (config.getBoolean("automod.block-links.enabled")) {
-            if (!player.hasPermission(config.getString("automod.block-links.bypass"))) {
-                if (RegexUtils.matchURL(message, config.getStringList("automod.block-links.whitelist"))) {
-                    player.sendI18nMessage("automod.links");
-                    e.setCancelled(true);
-                    return;
-                }
-            }
         }
 
         // Colorize.

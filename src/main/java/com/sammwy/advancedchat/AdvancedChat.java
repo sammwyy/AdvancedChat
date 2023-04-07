@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sammwy.advancedchat.api.ChatAPI;
 import com.sammwy.advancedchat.api.events.ChatEvent;
+import com.sammwy.advancedchat.automod.Automod;
 import com.sammwy.advancedchat.commands.CommandExecutor;
 import com.sammwy.advancedchat.commands.CommandListener;
 import com.sammwy.advancedchat.commands.impl.ChatCommand;
@@ -22,6 +23,7 @@ public class AdvancedChat extends JavaPlugin {
     private LanguageManager languageManager;
     private ChatPlayerManager playerManager;
 
+    private Automod automod;
     private CommandExecutor console;
 
     private void addCommand(CommandListener command) {
@@ -64,12 +66,17 @@ public class AdvancedChat extends JavaPlugin {
         this.addCommand(new ChatCommand());
 
         // Get console.
+        this.automod = new Automod(this);
         this.console = new CommandExecutor(this, this.getServer().getConsoleSender());
     }
 
     // Configuration getters
+    public Configuration getConfig(String file) {
+        return this.configManager.getConfig(file);
+    }
+
     public Configuration getConfig() {
-        return this.configManager.getConfig("config.yml");
+        return this.getConfig("config.yml");
     }
 
     // Managers getters
@@ -82,6 +89,10 @@ public class AdvancedChat extends JavaPlugin {
     }
 
     // Others getters
+    public Automod getAutomod() {
+        return this.automod;
+    }
+
     public CommandExecutor getConsole() {
         return this.console;
     }

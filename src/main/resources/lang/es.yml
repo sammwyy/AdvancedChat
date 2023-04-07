@@ -9,17 +9,17 @@ common:
 
 # Mensajes de auto moderación.
 automod:
+  cooldown: "&cPor favor, no envies mensajes muy rápido."
   links: "No está permitido escribir enlaces en el chat."
+  hackusate: "&cNo acuses a otros de trampas. Si tienes algun problema, reportalo al administrador."
+  hate-speech: "&cNo seas toxico con otros jugadores."
   repeated-message: "&cNo repitas el mismo mensaje."
+  swear: "&cCuida tu vocabulario, por favor."
 
 # Mensajes de comandos
 clear:
   cleared-by-admin: "&bEl chat fue limpiado por un administrador."
   success: "&aHas limpiado el chat."
-
-cooldown:
-  # Mensaje a mostrar si el chat tiene cooldown activado.
-  warning: "&cPor favor, no envies mensajes muy rápido."
 
 help: |-
   &r

@@ -15,30 +15,28 @@ settings:
   default-lang: "en"
 
 # Automatic moderation based on chat.
+# More advance
 automod:
+  # Block the user from sending repeated messages.
   block-repeated-messages:
     enabled: true
     bypass: "chat.bypass.repeated-messages"
-  block-links:
+  # Enables a cooldown between messages from the same player.
+  cooldown:
     enabled: true
-    bypass: "chat.bypass.links"
-    whitelist:
-      - https://github.com/sammwyy/AdvancedChat
-      - https://google.com
+    # The time in milliseconds that the player must wait before being able to send another message.
+    time: 1000
+    # Permission to bypass the cooldown.
+    bypass: "chat.bypass.cooldown"
+  # Advanced word detection using Regex. It is configured in the expressions.yml file
+  expressions:
+    enabled: true
 
 # The lines that will be cleaned in the chat when using the /chat clear command.
 clear:
   lines: 20
   # Players with this permission will not have their chat cleared unless they use /chat clear all.
   bypass: "chat.bypass.clear"
-
-# Enables a cooldown between messages from the same player.
-cooldown:
-  enabled: true
-  # The time in milliseconds that the player must wait before being able to send another message.
-  time: 1000
-  # Permission to bypass the cooldown.
-  bypass: "chat.bypass.cooldown"
 
 # The format that will be used to display player messages.
 #

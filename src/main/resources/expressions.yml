@@ -1,0 +1,59 @@
+links:
+  enabled: true
+  bypass: "chat.bypass.links"
+  message: "{i18n:automod.links}"
+  regex: ^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$
+  whitelist:
+    - github.com/sammwyy/AdvancedChat
+    - minecraft.net
+
+hackusate:
+  enabled: false
+  bypass: "chat.bypass.hackusate"
+  message: "{i18n:automod.hackusate}"
+  blacklist:
+    ignore-case: true
+    ignore-specials: true
+    match-entire-word: false
+    items:
+      - hack
+      - cheat
+      - hax
+
+hate-speech:
+  enabled: true
+  bypass: "chat.bypass.hate-speech"
+  message: "{i18n:automod.hate-speech}"
+  blacklist:
+    ignore-case: true
+    ignore-specials: true
+    match-entire-word: true
+    items:
+      - l
+      - ez
+      - easy
+
+swear:
+  enabled: true
+  bypass: "chat.bypass.swear"
+  message: "{i18n:automod.swear}"
+  blacklist:
+    ignore-case: true
+    ignore-specials: true
+    match-entire-word: false
+    items:
+      - fuck
+      - fucker
+      - tits
+      - bastard
+      - wanker
+      - tosser
+      - bollocks
+      - motherfucker
+      - bitch
+      - asshole
+      - ass
+      - pussy
+      - shit
+      - dick
+      - penis
