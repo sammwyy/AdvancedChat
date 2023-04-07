@@ -17,7 +17,7 @@ public class CommandExecutor {
     }
 
     public String formatMessage(String message) {
-        return ChatColor.translateAlternateColorCodes('&', message)
+        return ChatColor.translateAlternateColorCodes('&', this.formatTranslationKeys(message))
                 .replace("{plugin_version}", this.plugin.getDescription().getVersion());
     }
 
