@@ -123,7 +123,7 @@ public class CommandArguments {
                 if (player != null && player.isOnline()) {
                     value = this.plugin.getPlayerManager().getPlayer(player);
                 } else {
-                    if (type == Argument.OFFLINE_PLAYER) {
+                    if (type == Argument.OFFLINE_PLAYER && player != null) {
                         value = new OfflinePlayer(this.plugin, player, arg);
                     } else {
                         throw new PlayerOfflineException(arg);

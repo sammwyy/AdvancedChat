@@ -1,5 +1,6 @@
 package com.sammwy.advancedchat.listeners;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -16,7 +17,10 @@ public class PlayerJoinListener implements Listener {
 
   @EventHandler
   public void onPlayerJoin(PlayerJoinEvent e) {
-    ChatPlayer player = this.plugin.getPlayerManager().addPlayer(e.getPlayer());
-    player.download();
+    Player bukkitPlayer = e.getPlayer();
+    if (bukkitPlayer != null) {
+      ChatPlayer player = this.plugin.getPlayerManager().addPlayer(bukkitPlayer);
+      player.download();
+    }
   }
 }

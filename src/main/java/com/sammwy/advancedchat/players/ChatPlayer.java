@@ -1,5 +1,7 @@
 package com.sammwy.advancedchat.players;
 
+import javax.annotation.Nonnull;
+
 import org.bukkit.entity.Player;
 
 import com.sammwy.advancedchat.AdvancedChat;
@@ -11,10 +13,10 @@ import com.sammwy.libi18n.Language;
 import me.clip.placeholderapi.PlaceholderAPI;
 
 public class ChatPlayer extends CommandExecutor {
-    private Player bukkitPlayer;
+    private @Nonnull Player bukkitPlayer;
     private ChatPlayerState state;
 
-    public ChatPlayer(AdvancedChat plugin, Player bukkitPlayer) {
+    public ChatPlayer(AdvancedChat plugin, @Nonnull Player bukkitPlayer) {
         super(plugin, bukkitPlayer);
         this.bukkitPlayer = bukkitPlayer;
         this.state = new ChatPlayerState();
@@ -64,14 +66,20 @@ public class ChatPlayer extends CommandExecutor {
     }
 
     public void sendRawMessage(String json) {
-        LibChatBukkit.sendMessage(bukkitPlayer, json);
+        if (json != null) {
+            LibChatBukkit.sendMessage(bukkitPlayer, json);
+        }
     }
 
-    public void sendActionBar(String text) {
-        LibChatBukkit.sendActionbar(bukkitPlayer, text);
+    public void sendActionBar(@Nonnull String text) {
+        if (text != null) {
+            LibChatBukkit.sendActionbar(bukkitPlayer, text);
+        }
     }
 
     public void sendMessage(Component component) {
-        LibChatBukkit.sendMessage(bukkitPlayer, component);
+        if (component != null) {
+            LibChatBukkit.sendMessage(bukkitPlayer, component);
+        }
     }
 }

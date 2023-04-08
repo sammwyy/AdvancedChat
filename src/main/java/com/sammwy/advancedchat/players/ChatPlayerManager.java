@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 import org.bukkit.entity.Player;
 
 import com.sammwy.advancedchat.AdvancedChat;
@@ -18,7 +20,7 @@ public class ChatPlayerManager {
         this.players = new HashMap<>();
     }
 
-    public ChatPlayer addPlayer(Player bukkitPlayer) {
+    public ChatPlayer addPlayer(@Nonnull Player bukkitPlayer) {
         ChatPlayer player = new ChatPlayer(this.plugin, bukkitPlayer);
         this.players.put(bukkitPlayer, player);
         return player;
@@ -51,7 +53,9 @@ public class ChatPlayerManager {
 
     public void addAll() {
         for (Player bukkitPlayer : this.plugin.getServer().getOnlinePlayers()) {
-            this.addPlayer(bukkitPlayer).download();
+            if (bukkitPlayer != null) {
+                this.addPlayer(bukkitPlayer).download();
+            }
         }
     }
 }
