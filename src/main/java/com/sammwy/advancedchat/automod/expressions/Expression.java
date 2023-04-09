@@ -39,7 +39,7 @@ public class Expression {
     public boolean check(ChatPlayer player, String chatMessage) {
         if (this.enabled) {
             if (!player.hasPermission(bypassPermission)) {
-                if (!this.pass(bypassPermission)) {
+                if (!this.pass(chatMessage)) {
                     player.sendMessage(this.message);
                     return false;
                 }
@@ -52,7 +52,7 @@ public class Expression {
     public boolean pass(String chatMessage) {
         if (this.regex != null) {
             Matcher matcher = this.regex.matcher(chatMessage);
-            return matcher.results().anyMatch((result) -> {
+            return !matcher.results().anyMatch((result) -> {
                 return ListUtils.containsIgnoreCase(result.group(), this.whitelist);
             });
         } else if (this.blacklist != null) {
@@ -80,7 +80,11 @@ public class Expression {
                         }
                     }
                 } else {
-                    return chatMessage.contains(word);
+                    if (chatMessage.contains(word)) {
+                        return false;
+                    } else {
+                        continue;
+                    }
                 }
             }
         }

@@ -34,8 +34,8 @@ restriction:
 
 # Formato del perfil
 profile: |-
-  &2⚔ Asesinatos: &a%player_kills%
-  &4☠ Muertes: &c%player_deaths%
+  &2⚔ Asesinatos: &a%statistic_player_kills%
+  &4☠ Muertes: &c%statistic_deaths%
   &5⌚ Tiempo jugado: &d%statistic_time_played%
   &r
   &9☁ Latencia: &b%player_ping%

@@ -58,7 +58,7 @@
         <dependency>
             <groupId>com.sammwy</groupId>
             <artifactId>libi18n</artifactId>
-            <version>0.0.2</version>
+            <version>0.0.6</version>
         </dependency>
         <!-- Plugin soft-dependencies -->
         <dependency>
