@@ -109,7 +109,7 @@ public class AsyncPlayerChatListener implements Listener {
         String consoleFormat = config.getString("format-console");
         if (consoleFormat != null && !consoleFormat.isEmpty()) {
             String finalMessage = player.formatMessage(consoleFormat).replace("{message}", message);
-            this.plugin.getConsole().sendMessage(finalMessage);
+            this.plugin.getConsole().sendMessage(finalMessage, false);
         }
     }
 }

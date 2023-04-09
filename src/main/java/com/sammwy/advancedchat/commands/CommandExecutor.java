@@ -45,8 +45,16 @@ public class CommandExecutor {
         }
     }
 
+    public void sendMessage(String message, boolean format) {
+        if (format) {
+            message = this.formatMessage(message);
+        }
+
+        this.sender.sendMessage(message);
+    }
+
     public void sendMessage(String message) {
-        this.sender.sendMessage(this.formatMessage(message));
+        this.sendMessage(message, true);
     }
 
     public void sendI18nMessage(String key) {
