@@ -10,7 +10,7 @@ common:
 # Mensajes de auto moderación.
 automod:
   cooldown: "&cPor favor, no envíes mensajes muy rápido."
-  links: "No está permitido escribir enlaces en el chat."
+  links: "&cNo está permitido escribir enlaces en el chat."
   hackusate: "&cNo acuses a otros de trampas. Si tenés algún problema, reportáselo a un administrador."
   hate-speech: "&cNo seas tóxico con otros jugadores."
   repeated-message: "&cNo repitas el mismo mensaje."
