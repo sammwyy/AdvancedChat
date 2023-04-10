@@ -18,8 +18,8 @@ automod:
 
 # Command messages
 clear:
-  cleared-by-admin: "&bThe chat was cleaned by an administrator."
-  success: "&aYou have cleaned the chat."
+  cleared-by-admin: "&bThe chat was cleared by an administrator."
+  success: "&aYou have cleared the chat."
 
 help: |-
   &r
