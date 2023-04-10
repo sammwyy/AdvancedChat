@@ -1,0 +1,42 @@
+# Mensajes comunes
+common:
+  no-by-player: "&cEste comando sólo puede ser ejecutado por un jugador."
+  no-permission: "&cNo tenés permisos para usar este comando."
+  offline-player: "&cEste jugador se encuentra desconectado."
+  arg-must-be-boolean: "&cEl argumento {arg} debe ser true o false."
+  arg-must-be-number: "&c{arg} no es un número válido."
+  exception: "&cOcurrió un error desconocido, contactá a un administrador."
+
+# Mensajes de auto moderación.
+automod:
+  cooldown: "&cPor favor, no envíes mensajes muy rápido."
+  links: "&cNo está permitido escribir enlaces en el chat."
+  hackusate: "&cNo acuses a otros de trampas. Si tenés algún problema, reportáselo a un administrador."
+  hate-speech: "&cNo seas tóxico con otros jugadores."
+  repeated-message: "&cNo repitas el mismo mensaje."
+  swear: "&cCuidá tu vocabulario, por favor."
+
+# Mensajes de comandos
+clear:
+  cleared-by-admin: "&bEl chat fue limpiado por un administrador."
+  success: "&aLimpiaste el chat."
+
+help: |-
+  &r
+  &9&lAdvanced&b&lChat &8| &cv{plugin_version} por Sammwy
+  &r
+  &f/chat clear &8- &eLimpia el chat para todos los jugadores no admin.
+  &f/chat clear all &8- &eLimpia el chat para todos los jugadores.
+
+restriction:
+  # Mensaje a mostrar si el chat esta desactivado
+  warning: "&cEl chat se encuentra desactivado."
+
+# Formato del perfil
+profile: |-
+  &2⚔ Asesinatos: &a%statistic_player_kills%
+  &4☠ Muertes: &c%statistic_deaths%
+  &5⌚ Tiempo jugado: &d%statistic_time_played%
+  &r
+  &9☁ Latencia: &b%player_ping%
+  &6⛃ Dinero: &e%vault_eco_balance%
