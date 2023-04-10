@@ -10,9 +10,9 @@ common:
 # Autmod messages
 automod:
   cooldown: "&cPlease don't send messages so fast."
-  links: "&cIt is not allowed to write links in the chat."
-  hackusate: "&cDon't accuse others of cheating. If you have any problem, report it to the administration."
-  hate-speech: "&cDo not speak hate language towards other players."
+  links: "&cLinks are not allowed in the chat."
+  hackusate: "&cDon't accuse others of cheating. If you have any problem, report it to an administrator."
+  hate-speech: "&cDon't use hate language against other players."
   repeated-message: "&cDon't repeat the same message."
   swear: "&cTake care of your vocabulary."
 
