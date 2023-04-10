@@ -1,7 +1,7 @@
 # Common messages
 common:
   no-by-player: "&cThis command cannot be executed by a player."
-  no-permission: "&cYou dont have permissions to run this command."
+  no-permission: "&cYou don't have permissions to run this command."
   offline-player: "&cThis player is offline."
   arg-must-be-boolean: "&cThe argument {arg} must be true or false."
   arg-must-be-number: "&c{arg} is not valid number."
